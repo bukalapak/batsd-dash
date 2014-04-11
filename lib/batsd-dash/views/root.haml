@@ -4,13 +4,13 @@
       if (type == 'timers')
         metric += ':mean';
 
-      return '/graph#'+ type +'='+ metric;
+      return '/batsd/graph#'+ type +'='+ metric;
     }
 
     var types = {};
     var content = d3.select('#content');
 
-    d3.json('/available', function(stats){
+    d3.json('/batsd/available', function(stats){
       if (!stats.length || stats.error)
         return content.append('strong').text(stats.error || 'No Statistics Available');
 
