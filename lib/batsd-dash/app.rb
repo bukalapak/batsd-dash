@@ -56,7 +56,7 @@ module Batsd::Dash
       haml :view
     end
 
-    get %r[/([A-Za-z0-9-_]+)$], provides: :html do
+    get %r[/([A-Za-z0-9\-_]+)$], provides: :html do
       begin
         haml params[:captures].first.to_sym, locals: { user_template: true }
       rescue Errno::ENOENT
