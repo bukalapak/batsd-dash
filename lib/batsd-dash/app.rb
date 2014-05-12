@@ -102,7 +102,11 @@ module Batsd
               points = json[statistic] || []
               values = values_for_graph(points, options)
 
-              results << { key: metric, type: datatype[0..-2], values: values }
+              sum = values.map(&:last).sum
+
+              label = "#{metric}: (#{sum})"
+
+              results << { key: label, type: datatype[0..-2], values: values }
             end
           end
         end
